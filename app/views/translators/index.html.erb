@@ -1,24 +1,66 @@
-<h1>エネルギー翻訳機</h1>
-<p>エネルギーを直感的に理解しやすい数値に翻訳するアプリ</p>
-<div>
-  <% if @errors %>
-    <% @errors.each do |error| %>
-      <p>・<%= error %></p>
-    <% end %>
-  <% end %>
-</div>
+<div class="container-xxl p-0 p-md-3">
+  <div class="app-shell">
+    <header class="app-header px-3 px-md-5 py-3">
+      <div class="d-flex align-items-center justify-content-between gap-3">
+        <div class="d-flex align-items-center gap-3">
+          <div class="app-logo" aria-hidden="true">🔥</div>
+          <h1 class="app-title h2 mb-0">エネルギー翻訳機</h1>
+        </div>
 
-<%= form_with url: create_path, data: { turbo_frame: "result" } do |f| %>
-  <div>
-    <%= f.label 'エネルギー量：' %>
-    <%= f.number_field :kcal %>kcal
+        <div class="d-flex align-items-center gap-2 gap-md-3">
+          <button type="button" class="btn outline-red-btn">要望</button>
+          <button type="button" class="btn outline-red-btn">使い方</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-content px-3 px-md-5 py-3 py-md-4">
+      <section class="text-center mb-3 mb-md-4">
+        <h2 class="hero-title mb-0">
+          <span class="accent">エネルギー</span>🔥を、直感的な表現へ
+        </h2>
+        <div class="hero-underline"></div>
+      </section>
+
+      <section class="row mb-4">
+        <div class="col-12 col-lg-9 mx-auto">
+          <div class="input-card p-4 mb-4">
+            <%= form_with url: create_path, data: { turbo_frame: "result" } do |f| %>
+              <div class="mb-4">
+                <%= f.label :input, 'エネルギー量を入力', class: 'section-label mb-3' %>
+                <div class="d-flex gap-3 align-items-center">
+                  <%= f.number_field :input, class: 'form-control energy-input', placeholder: '例: 500' %>
+                  <div class="unit-badge">kcal</div>
+                </div>
+              </div>
+
+              <div>
+                <% if @errors %>
+                  <% @errors.each do |error| %>
+                    <p>・<%= error %></p>
+                  <% end %>
+                <% end %>
+              </div>
+
+              <div class="mb-4">
+                <%= f.label :conversion_id, '翻訳先を選択', class: 'section-label mb-3' %>
+                <%= f.collection_select :conversion_id,
+                                        @conversions,
+                                        :id,
+                                        :name,
+                                        {},
+                                        { class: 'form-select energy-select' } %>
+              </div>
+              <%= f.submit '⟳ 翻訳する', class: 'btn translate-btn w-100' %>
+            </div>
+            <% end %>
+
+            <%= turbo_frame_tag "result" do %>
+            <% end %>
+
+          </div>
+        </div>
+      </section>
+    </main>
   </div>
-  <%= f.submit '翻訳' %>
-<% end %>
-
-<div>
-  <h2>翻訳結果</h2>
-  <%= turbo_frame_tag "result" do %>
-    <p>--</p>
-  <% end %>
 </div>

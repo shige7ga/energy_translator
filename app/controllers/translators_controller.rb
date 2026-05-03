@@ -1,11 +1,12 @@
 class TranslatorsController < ApplicationController
   def index
+    @conversions = Conversion.all
   end
 
   def create
-    @conversion = Conversion.find(1)
-    running_time = @conversion.translate(params[:kcal].to_f)
-    @output = "約#{running_time}分の軽いランニング"
+    @input = params[:input].to_f
+    @conversion = Conversion.find(params[:conversion_id])
+    @output = @conversion.translate(@input)
 
     render partial: "translators/shared/result"
   end
