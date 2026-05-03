@@ -1,0 +1,5 @@
+<% if form.errors[field].any? %>
+  <div class="text-danger mt-1">
+    <%= form.errors[field].first %>
+  </div>
+<% end %>
