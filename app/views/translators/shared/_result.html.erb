@@ -2,19 +2,19 @@
   <div class="result-inner">
     <div class="p-4 p-md-5 text-center">
       <div class="mb-3">
-        <span class="result-main-number"><%= @input.round %></span>
+        <span class="result-main-number"><%= @form.input.round %></span>
         <span class="fs-3 fw-bold ms-2">kcal は</span>
       </div>
 
       <div class="result-divider my-4"></div>
 
       <div class="d-flex align-items-center justify-content-center gap-4 flex-wrap">
-        <div class="conversion-icon" aria-hidden="true"><%= @conversion.icon %></div>
+        <div class="conversion-icon" aria-hidden="true"><%= @form.conversion.icon %></div>
         <div class="text-start">
-          <div class="result-word"><%= @conversion.name %></div>
+          <div class="result-word"><%= @form.conversion.name %></div>
           <div>
             <span class="fs-2 fw-bold text-danger">約</span>
-            <span class="result-time"><%= @output %><%= @conversion.output_unit %></span>
+            <span class="result-time"><%= output %><%= @form.conversion.output_unit %></span>
             <span class="fs-2 fw-bold">です</span>
           </div>
         </div>
@@ -22,8 +22,8 @@
     </div>
 
     <div class="result-note px-4 py-3 d-flex gap-3 align-items-center">
-      <div class="fs-3 text-info" aria-hidden="true">💡</div>
-      <p class="mb-0 fw-semibold"><%= @conversion.description %></p>
+      <div class="fs-3 text-info" aria-hidden="true">📝</div>
+      <p class="mb-0 fw-semibold"><%= @form.conversion.description %></p>
     </div>
   </div>
 <% end %>

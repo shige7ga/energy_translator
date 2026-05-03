@@ -25,23 +25,15 @@
       <section class="row mb-4">
         <div class="col-12 col-lg-9 mx-auto">
           <div class="input-card p-4 mb-4">
-            <%= form_with url: create_path, data: { turbo_frame: "result" } do |f| %>
+            <%= form_with model: @form, url: create_path do |f| %>
               <div class="mb-4">
                 <%= f.label :input, 'エネルギー量を入力', class: 'section-label mb-3' %>
                 <div class="d-flex gap-3 align-items-center">
                   <%= f.number_field :input, class: 'form-control energy-input', placeholder: '例: 500' %>
                   <div class="unit-badge">kcal</div>
                 </div>
+                <div id="input_error"></div>
               </div>
-
-              <div>
-                <% if @errors %>
-                  <% @errors.each do |error| %>
-                    <p>・<%= error %></p>
-                  <% end %>
-                <% end %>
-              </div>
-
               <div class="mb-4">
                 <%= f.label :conversion_id, '翻訳先を選択', class: 'section-label mb-3' %>
                 <%= f.collection_select :conversion_id,
@@ -50,13 +42,13 @@
                                         :name,
                                         {},
                                         { class: 'form-select energy-select' } %>
+                <div id="conversion_id_error"></div>
               </div>
               <%= f.submit '⟳ 翻訳する', class: 'btn translate-btn w-100' %>
             </div>
             <% end %>
 
-            <%= turbo_frame_tag "result" do %>
-            <% end %>
+            <div id="result_area"></div>
 
           </div>
         </div>
