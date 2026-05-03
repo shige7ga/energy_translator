@@ -1,0 +1,24 @@
+<h1>エネルギー翻訳機</h1>
+<p>エネルギーを直感的に理解しやすい数値に翻訳するアプリ</p>
+<div>
+  <% if @errors %>
+    <% @errors.each do |error| %>
+      <p>・<%= error %></p>
+    <% end %>
+  <% end %>
+</div>
+
+<%= form_with url: create_path, data: { turbo_frame: "result" } do |f| %>
+  <div>
+    <%= f.label 'エネルギー量：' %>
+    <%= f.number_field :kcal %>kcal
+  </div>
+  <%= f.submit '翻訳' %>
+<% end %>
+
+<div>
+  <h2>翻訳結果</h2>
+  <%= turbo_frame_tag "result" do %>
+    <p>--</p>
+  <% end %>
+</div>
