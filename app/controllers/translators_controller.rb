@@ -8,13 +8,15 @@ class TranslatorsController < ApplicationController
     @form = TranslationForm.new(translation_params)
 
     if @form.valid?
+      output = @form.result_for_display
+
       render turbo_stream: [
         turbo_stream.update('input_error', ''),
         turbo_stream.update('conversion_id', ''),
         turbo_stream.update(
           "result_area",
           partial: 'translators/shared/result',
-          locals: { output: @form.result }
+          locals: { output: output }
         )
       ]
     else

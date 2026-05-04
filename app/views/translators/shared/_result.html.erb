@@ -14,7 +14,7 @@
           <div class="result-word"><%= @form.conversion.name %></div>
           <div>
             <span class="fs-2 fw-bold text-danger">約</span>
-            <span class="result-time"><%= output %><%= @form.conversion.output_unit %></span>
+            <span class="result-time"><%= output %></span>
             <span class="fs-2 fw-bold">です</span>
           </div>
         </div>
@@ -23,7 +23,7 @@
 
     <div class="result-note px-4 py-3 d-flex gap-3 align-items-center">
       <div class="fs-3 text-info" aria-hidden="true">📝</div>
-      <p class="mb-0 fw-semibold"><%= @form.conversion.description %></p>
+      <p class="mb-0 fw-semibold"><%= @form.conversion.description %> <a href="<%= @form.conversion.reference_url %>" target="_blank" rel="noopener noreferrer" class="reference_url">※出典情報</a></p>
     </div>
   </div>
 <% end %>
