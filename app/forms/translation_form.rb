@@ -15,7 +15,7 @@ class TranslationForm
   end
 
   def conversion
-    @conversion ||= Conversion.find(conversion_id)
+    @conversion ||= Conversion.find_by(id: conversion_id)
   end
 
   private
@@ -24,6 +24,6 @@ class TranslationForm
     return if conversion_id.blank?
     return if conversion.present?
 
-    errors.add(:conversion_id, 'が存在しません')
+    errors.add(:conversion_id, :not_found)
   end
 end

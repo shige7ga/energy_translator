@@ -1,0 +1,22 @@
+ja:
+  activemodel:
+    models:
+      translation_form: 翻訳フォーム
+
+    attributes:
+      translation_form:
+        input: エネルギーの数値
+        conversion_id: 翻訳先
+
+    errors:
+      models:
+        translation_form:
+          attributes:
+            input:
+              blank: ※空欄になっています。入力してください
+              not_a_number: ※数値で入力してください
+              greater_than: ※%{count}より大きい値を入力してください
+
+            conversion_id:
+              blank: ※空欄になっています。入力してください選択してください
+              not_found: ※入力した値は存在しません
