@@ -14,7 +14,7 @@ class Conversion < ApplicationRecord
     elsif multiply?
       input * factor
     else
-      raise '未対応の計算タイプです'
+      raise "未対応の計算タイプです"
     end
     result.round
   end

@@ -11,11 +11,11 @@ class TranslatorsController < ApplicationController
       output = @form.result_for_display
 
       render turbo_stream: [
-        turbo_stream.update('input_error', ''),
-        turbo_stream.update('conversion_id', ''),
+        turbo_stream.update("input_error", ""),
+        turbo_stream.update("conversion_id", ""),
         turbo_stream.update(
           "result_area",
-          partial: 'translators/shared/result',
+          partial: "translators/shared/result",
           locals: { output: output }
         )
       ]

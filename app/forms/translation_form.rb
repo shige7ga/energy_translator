@@ -10,7 +10,7 @@ class TranslationForm
   validate :conversion_must_exist
 
   def result_for_display
-    if conversion.output_unit == '分'
+    if conversion.output_unit == "分"
       minutes_to_hours_minutes(result)
     else
       result.to_s + conversion.output_unit
