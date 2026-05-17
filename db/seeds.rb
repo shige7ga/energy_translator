@@ -92,3 +92,68 @@ conversions.each do |attributes|
   conversion.assign_attributes(attributes)
   conversion.save!
 end
+
+energy_units = [
+  {
+    name: "kcal",
+    to_joule: 4184,
+    description: "食品のエネルギー表示でよく使われる単位。日本ではカロリー表示として一般的に利用される。",
+    formula_text: "1 kcal = 4184 J",
+    reference_url: "https://www.e-gov.go.jp/"
+  },
+  {
+    name: "kJ",
+    to_joule: 1000,
+    description: "海外の食品表示や工業分野で使われるエネルギー単位。SI単位系に基づいている。",
+    formula_text: "1 kJ = 1000 J",
+    reference_url: "https://www.bipm.org/"
+  },
+  {
+    name: "MJ",
+    to_joule: 1000000,
+    description: "大きなエネルギー量を扱う際に使用される単位。工業・燃料・発電分野などで利用される。",
+    formula_text: "1 MJ = 1000000 J",
+    reference_url: "https://www.bipm.org/"
+  },
+  {
+    name: "Wh",
+    to_joule: 3600,
+    description: "家電やモバイルバッテリーなどで使われる電力量の単位。",
+    formula_text: "1 Wh = 3600 J",
+    reference_url: "https://www.tepco.co.jp/"
+  },
+  {
+    name: "kWh",
+    to_joule: 3600000,
+    description: "電気料金の計算などで一般的に使用される電力量の単位。",
+    formula_text: "1 kWh = 3600000 J",
+    reference_url: "https://www.tepco.co.jp/"
+  },
+  {
+    name: "MWh",
+    to_joule: 3600000000,
+    description: "発電所や大規模設備など、大量の電力を扱う際に利用される単位。",
+    formula_text: "1 MWh = 3600000000 J",
+    reference_url: "https://www.tepco.co.jp/"
+  },
+  {
+    name: "mAh",
+    to_joule: 13.32,
+    description: "スマートフォンやモバイルバッテリーの容量表示でよく使われる単位。",
+    formula_text: "1 mAh ≒ 13.32 J（3.7V換算）",
+    reference_url: "https://www.apple.com/jp/batteries/"
+  },
+  {
+    name: "Ah",
+    to_joule: 13320,
+    description: "バッテリー容量を表す単位。車載バッテリーや蓄電池などで利用される。",
+    formula_text: "1 Ah ≒ 13320 J（3.7V換算）",
+    reference_url: "https://www.apple.com/jp/batteries/"
+  }
+]
+
+energy_units.each do |attributes|
+  energy_unit = EnergyUnit.find_or_initialize_by(name: attributes[:name])
+  energy_unit.assign_attributes(attributes)
+  energy_unit.save!
+end
