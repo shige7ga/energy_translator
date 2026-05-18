@@ -36,7 +36,7 @@ gem "bootsnap", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
-gem "draper", "4.0.2"
+gem "draper", "4.0.6"
 gem "rails-i18n", "~> 7.0.0"
 
 group :development, :test do
