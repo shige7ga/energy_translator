@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_05_01_113425) do
+ActiveRecord::Schema[7.2].define(version: 2026_05_17_105747) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -24,6 +24,16 @@ ActiveRecord::Schema[7.2].define(version: 2026_05_01_113425) do
     t.integer "calculation_type", default: 0, null: false
     t.string "reference_url"
     t.string "icon"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "energy_units", force: :cascade do |t|
+    t.string "name", null: false
+    t.float "to_joule", null: false
+    t.text "description"
+    t.text "formula_text"
+    t.string "reference_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
