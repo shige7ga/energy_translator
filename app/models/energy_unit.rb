@@ -4,4 +4,11 @@ class EnergyUnit < ApplicationRecord
   validates :description, presence: true
   validates :formula_text, presence: true
   validates :reference_url, presence: true
+
+  def to_kcal(input)
+    return input if name == 'kcal'
+    joule = input * to_joule # J換算
+    kcal_to_joule = 4184 # 1kcal = 4184J
+    (joule / kcal_to_joule).ceil(4)
+  end
 end

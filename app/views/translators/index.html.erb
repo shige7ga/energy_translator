@@ -25,7 +25,15 @@
                 <%= f.label :input, 'エネルギー量を入力', class: 'section-label mb-3' %>
                 <div class="d-flex gap-3 align-items-center">
                   <%= f.number_field :input, class: 'form-control energy-input', placeholder: '例: 500' %>
-                  <div class="unit-badge">kcal</div>
+                  <div>
+                    <%= f.collection_select :energy_unit_id,
+                                            @energy_units,
+                                            :id,
+                                            :name,
+                                            {},
+                                            { class: 'form-select energy-select' }
+                                            %>
+                  </div>
                 </div>
                 <div id="input_error"></div>
               </div>

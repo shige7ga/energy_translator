@@ -2,6 +2,7 @@ class TranslatorsController < ApplicationController
   def index
     @form = TranslationForm.new
     @conversions = Conversion.all
+    @energy_units = EnergyUnit.all
   end
 
   def create
@@ -39,6 +40,6 @@ class TranslatorsController < ApplicationController
   private
 
   def translation_params
-    params.require(:translation_form).permit(:input, :conversion_id)
+    params.require(:translation_form).permit(:input, :conversion_id, :energy_unit_id)
   end
 end

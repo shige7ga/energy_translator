@@ -4,10 +4,13 @@ class TranslationForm
 
   attribute :input, :float
   attribute :conversion_id, :integer
+  attribute :energy_unit_id, :integer
 
   validates :input, presence: true, numericality: { greater_than: 0 }
   validates :conversion_id, presence: true
+  validates :energy_unit_id, presence: true
   validate :conversion_must_exist
+  validate :energy_unit_must_exist
 
   def result_for_display
     if conversion.output_unit == "分"
@@ -19,11 +22,16 @@ class TranslationForm
 
   def result
     return nil unless valid?
-    conversion.translate(input)
+    kcal_input = energy_unit.to_kcal(input)
+    conversion.translate(kcal_input)
   end
 
   def conversion
     @conversion ||= Conversion.find_by(id: conversion_id)
+  end
+
+  def energy_unit
+    @energy_unit ||= EnergyUnit.find_by(id: energy_unit_id)
   end
 
   private
@@ -35,9 +43,15 @@ class TranslationForm
   end
 
   def conversion_must_exist
-    return if conversion_id.blank?
-    return if conversion.present?
+    record_must_exist(:conversion_id, conversion)
+  end
 
-    errors.add(:conversion_id, :not_found)
+  def energy_unit_must_exist
+    record_must_exist(:energy_unit_id, energy_unit)
+  end
+
+  def record_must_exist(attribute, record)
+    return if record.present?
+    errors.add(attribute, :not_found)
   end
 end
