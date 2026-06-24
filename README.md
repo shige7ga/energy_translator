@@ -3,7 +3,7 @@
 エネルギー量（kcal）を、日常生活でイメージしやすい指標に変換するWebアプリです。
 数値だけでは分かりづらいエネルギー量を、「運動時間」「電気代」「食べ物」などに置き換えることで、直感的に理解できるようにします。
 
-🔗 https://energy-translator.onrender.com/
+🔗 https://energy-translator-gxjt.onrender.com/
 
 ---
 
